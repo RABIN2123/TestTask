@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.testtask.databinding.FragmentGifFullsizeBinding
 
-class GifScreen(private val gifUrl: String) : Fragment() {
+class GifFragment(private val gifUrl: String) : Fragment() {
 
     private var binding: FragmentGifFullsizeBinding? = null
     override fun onCreateView(

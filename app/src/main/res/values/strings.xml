@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TestTask</string>
+    <string name="status_unauthorized">Please update API key.</string>
+    <string name="status_forbidden">Incorrect API key.</string>
+    <string name="status_too_many_request">Too many requests.</string>
+    <string name="error_fail_connect">"Please turn on internet and restart app"</string>
+    <string name="error_other">Oops. Unexpected Error :-(</string>
 </resources>

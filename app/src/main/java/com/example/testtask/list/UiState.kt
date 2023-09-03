@@ -13,6 +13,7 @@ data class UiState(
         FORBIDDEN(403),
         TOOMANYREQUESTS(429)
     }
+
     enum class ErrorStatus() {
         NONE,
         FAIL_CONNECT,

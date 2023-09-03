@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.testtask.gifscreen.GifScreen
+import com.example.testtask.gifscreen.GifFragment
 import com.example.testtask.R
 import com.example.testtask.databinding.FragmentGifListBinding
 import com.example.testtask.network.ApiHelperImpl
@@ -25,7 +25,7 @@ class GifListFragment : Fragment() {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.apply {
-            replace(R.id.fragment_view, GifScreen(gifUrl))
+            replace(R.id.fragment_view, GifFragment(gifUrl))
             addToBackStack(null)
             commit()
         }
@@ -107,21 +107,22 @@ class GifListFragment : Fragment() {
 
     private fun stateResponseAndError(value: UiState) {
         when (value.response) {
-            UiState.StatusResponse.UNAUTHORIZED -> toastShow("Please update API key.")
-            UiState.StatusResponse.FORBIDDEN -> toastShow("Incorrect API key.")
-            UiState.StatusResponse.TOOMANYREQUESTS -> toastShow("Too many requests.")
+            UiState.StatusResponse.UNAUTHORIZED -> toastShow(getString(R.string.status_unauthorized))
+            UiState.StatusResponse.FORBIDDEN -> toastShow(getString(R.string.status_forbidden))
+            UiState.StatusResponse.TOOMANYREQUESTS -> toastShow(getString(R.string.status_too_many_request))
             UiState.StatusResponse.OK, UiState.StatusResponse.NONE -> {}
         }
         when (value.error) {
             UiState.ErrorStatus.FAIL_CONNECT -> toastShow(
-                "Please turn on Internet.",
+                getString(R.string.error_fail_connect),
                 Toast.LENGTH_LONG
             )
 
             UiState.ErrorStatus.OTHER -> toastShow(
-                "Oops. Unexpected Error :-(",
+                getString(R.string.error_other),
                 Toast.LENGTH_LONG
             )
+
             UiState.ErrorStatus.NONE -> {}
         }
     }

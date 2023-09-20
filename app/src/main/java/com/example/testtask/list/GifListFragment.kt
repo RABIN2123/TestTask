@@ -25,7 +25,7 @@ class GifListFragment : Fragment() {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.apply {
-            replace(R.id.fragment_view, GifFragment(gifUrl))
+            replace(R.id.fragment_view, GifFragment.newInstance(gifUrl))
             addToBackStack(null)
             commit()
         }

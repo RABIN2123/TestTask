@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.testtask.databinding.FragmentGifFullsizeBinding
 
-class GifFragment(private val gifUrl: String) : Fragment() {
+private const val ARG_PARAM = "gifUrl"
+
+class GifFragment : Fragment() {
 
     private var binding: FragmentGifFullsizeBinding? = null
     override fun onCreateView(
@@ -26,9 +28,23 @@ class GifFragment(private val gifUrl: String) : Fragment() {
     }
 
     private fun initUi() {
+        var gifUrl: String? = null
+        arguments?.let {
+            gifUrl = it.getString(ARG_PARAM)
+        }
         binding?.let {
             Glide.with(requireActivity().applicationContext).load(gifUrl)
                 .into(it.fullsizeGifField)
         }
+    }
+
+    companion object {
+        fun newInstance(gifUrl: String) =
+            GifFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM, gifUrl)
+                }
+            }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.testtask.list
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -31,6 +32,7 @@ class GifListRecyclerAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: GifItem, onItemClicked: (String) -> Unit) {
             with(binding) {
+                Log.d("TAG!", item.smallImageUrl)
                 Glide.with(context).load(item.smallImageUrl).into(gifField)
                 root.setOnClickListener {
                     onItemClicked(item.bigImageUrl)
